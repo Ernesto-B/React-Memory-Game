@@ -6,11 +6,9 @@ export default function SingleCard({ card, handleChoice, flipped, disabled }) {
 
     
     const handleClick = () => {
-        setTimeout(() => {
-            if (!disabled){
-                handleChoice(card)
-            }
-        }, 200)
+        if (!disabled && !flipped){
+            handleChoice(card)
+        }
     }
 
   return (
