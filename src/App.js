@@ -18,20 +18,25 @@ function App() {
   const [choiceTwo, setChoiceTwo] = useState(null)
   const [disabled, setDisabled] = useState(false)
 
+  // Shuffling the cards
   const shuffleCards = () => {
     const shuffledCards = [...cardsImages, ...cardsImages]
     .sort(() => Math.random() - 0.5) // when a negative number, items will remain same order, otherwise switch order
     .map((card) => ({...card, id: Math.random(), matched: false}))
     console.log(shuffledCards)
 
+    setChoiceOne(null)
+    setChoiceTwo(null)
     setCards(shuffledCards)
     setTurns(0)
   }
 
+  // Handle a choice
   const handleChoice = (card) => {
     choiceOne ? setChoiceTwo(card) : setChoiceOne(card)
   }
 
+  // 
   useEffect(() => {
     if (choiceOne && choiceTwo) {
       setDisabled(true)
@@ -55,6 +60,7 @@ function App() {
 
   console.log(cards)
 
+  // Resetting the choices and increaing the turn counter
   const resetTurn = () => {
     setChoiceOne(null)
     setChoiceTwo(null)
@@ -62,6 +68,10 @@ function App() {
     setDisabled(false)
   }
 
+  // Starting the game automatically
+  useEffect(() => {
+    shuffleCards()
+  }, [])
 
   return (
     <div className="App">

@@ -3,10 +3,14 @@ import './SingleCard.css'
 
 export default function SingleCard({ card, handleChoice, flipped, disabled }) {
 
+
+    
     const handleClick = () => {
-        if (!disabled){
-            handleChoice(card)
-        }
+        setTimeout(() => {
+            if (!disabled){
+                handleChoice(card)
+            }
+        }, 200)
     }
 
   return (
